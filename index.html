@@ -1,10 +1,13 @@
+<!-- Kaitlin Lockhart
+     Spotify API project. Show's basic song info for each song searched, can add to playlist, and share -->
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Spotify Template</title>
+	<title>Spotify Sharing Swag</title>
 	
 	<!-- Include libraries -->
 	<script src="https://code.jquery.com/jquery.min.js"></script>
@@ -14,31 +17,109 @@
 	
 	<!-- Read scripts -->
 	<script src="app.js"></script>
-	<link href="app.css" type="text/css" rel="stylesheet"/>	
-	
+	<link href="app.css" type="text/css" rel="stylesheet"/>
+
+	<!--<meta property="og:url"           content="http://www.your-domain.com/your-page.html" />-->
+	<!--<meta property="og:type"          content="music.playlist" />-->
+	<!--<meta property="og:title"         content="Spotify Sharing Swag" />-->
+	<!--<meta property="og:description"   content="The simplest website to share music you love <3" />-->
+	<!--<meta property="og:image"         content="spotify_heart.jpg" />-->
 </head>
 <body>
+	<!-- Load Facebook SDK for JavaScript -->
+	<!--<div id="fb-root"></div>-->
+	<!--<script>(function(d, s, id) {-->
+		<!--var js, fjs = d.getElementsByTagName(s)[0];-->
+		<!--if (d.getElementById(id)) return;-->
+		<!--js = d.createElement(s); js.id = id;-->
+		<!--js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";-->
+		<!--fjs.parentNode.insertBefore(js, fjs);-->
+	<!--}(document, 'script', 'facebook-jssdk'));</script>-->
+
 	<!-- Initiate app -->
 	<div ng-app="myApp" ng-controller="myCtrl">
 		<!-- Form -->
+		<div id="header" class="container-fluid">
 		<form class="container" name="songForm">
+			<h1>Share your music</h1>
 			<div class="form-group">
-				<label>Spotify search:</label>
-				<input name="search" placeholder="Enter your search.." ng-model="track" class="form-control"></input>
+				<label>Spotify search by song/artist/album:</label>
+				<input name="search" placeholder="Enter your search..." ng-model="searchedTrack" class="form-control" />
 			</div>
 			<div class="form-group">
-				<button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getSongs()" type="submit">Submit</button>
+				<button ng-disabled="songForm.search.$invalid" class="btn btn-primary btn-lg" ng-click="getSongs()" type="submit">Submit</button>
 			</div>
 		</form>
-		
+		</div>
 		<!-- Results -->
-		<div class="container-fixed">
-			<p ng-show="tracks.length>0" class="help-block">Click to sample</p>
-			<ul>
-				<li ng-repeat="track in tracks" class="" ng-click="play(track.preview_url)" title="{{track.name}}">{{track.name + ', by ' + track.artists[0].name}}</li>
+
+
+		<div id="songList" class="container-fixed col-md-6">
+			<!--<p ng-show="tracks.length>0" class="help-block">Click to sample</p>-->
+			<p ng-show="tracks.length>0">Click the button for more information and to play a sample.</p>
+			<ul class="list-group">
+				<li ng-repeat="track in tracks" class="list-group-item" title="{{track.name}}">
+					<!--<button ng-model="add" ng-click="addSong(track)" class="btn btn-xs">Add</button>-->
+					<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal{{track.id}}" ng-click="play(track.preview_url)">Info</button>
+					{{'   ' + track.name + ', by ' + track.artists[0].name}}
+
+					<!-- Modal with track info -->
+					<div id=modal{{track.id}} class="modal fade" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title">Track info</h4>
+								</div>
+								<div class="modal-body">
+									<h3>"{{track.name}}" from the album {{track.album.name}} </h3>
+									<img src="{{track.album.images[0].url}}" />
+									<h3>By {{track.artists[0].name}}</h3>
+									<button ng-model="add" ng-click="addSong(track)" class="btn btn-success">Add to playlist</button>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="stop(track.preview_url)">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+
 			</ul>
 		</div>
+
+		<!-- Playlist -->
+		<div id="playlistDiv" class="container-fixed col-md-6" ng-show="playlist.length>0"> <!-- ng-show="playlist.length>0"-->
+			<p>This is your super duper playlist. Click share to send to friends.</p>
+			<ul class="list-group">
+				<li ng-repeat="song in playlist" class="list-group-item" title="{{song.name}}">{{song.title + ', by ' + song.artist}}</li>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#share">Share</button>
+			</ul>
+
+		</div>
+
+		<!-- Sharing modal -->
+		<div id="share" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Share with your friends!</h4>
+					</div>
+					<div class="modal-body">
+						<p>FACEBOOK!</p>
+						<!--<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>-->
+						<input name="search" placeholder="Enter an e-mail address..." />
+						<button><a href="mailto:?Subject=Your friend sent you a playlist"></a>Send</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
-	</div>
+
 </body>
 </html>
