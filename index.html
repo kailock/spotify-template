@@ -19,22 +19,22 @@
 	<script src="app.js"></script>
 	<link href="app.css" type="text/css" rel="stylesheet"/>
 
-	<!--<meta property="og:url"           content="http://www.your-domain.com/your-page.html" />-->
-	<!--<meta property="og:type"          content="music.playlist" />-->
-	<!--<meta property="og:title"         content="Spotify Sharing Swag" />-->
-	<!--<meta property="og:description"   content="The simplest website to share music you love <3" />-->
-	<!--<meta property="og:image"         content="spotify_heart.jpg" />-->
+	<meta property="og:url"           content="http://students.washington.edu/kailock/info343/spotify-template/" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Spotify Sharing Swag Site" />
+	<meta property="og:description"   content="The simplest website to share music you love <3" />
+	<meta property="og:image"         content="spotify_heart.jpg" />
 </head>
 <body>
 	<!-- Load Facebook SDK for JavaScript -->
-	<!--<div id="fb-root"></div>-->
-	<!--<script>(function(d, s, id) {-->
-		<!--var js, fjs = d.getElementsByTagName(s)[0];-->
-		<!--if (d.getElementById(id)) return;-->
-		<!--js = d.createElement(s); js.id = id;-->
-		<!--js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";-->
-		<!--fjs.parentNode.insertBefore(js, fjs);-->
-	<!--}(document, 'script', 'facebook-jssdk'));</script>-->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 
 	<!-- Initiate app -->
 	<div ng-app="myApp" ng-controller="myCtrl">
@@ -92,8 +92,10 @@
 		<div id="playlistDiv" class="container-fixed col-md-6" ng-show="playlist.length>0"> <!-- ng-show="playlist.length>0"-->
 			<p>This is your super duper playlist. Click share to send to friends.</p>
 			<ul class="list-group">
-				<li ng-repeat="song in playlist" class="list-group-item" title="{{song.name}}">{{song.title + ', by ' + song.artist}}</li>
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#share">Share</button>
+				<li ng-repeat="song in playlist" class="list-group-item" title="{{song.name}}">
+					<button class="btn btn-xs" ng-click="remove(song)">x</button>
+					{{'   ' + song.title + ', by ' + song.artist}}</li>
+				<button id="shareButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#share">Share</button>
 			</ul>
 
 		</div>
@@ -107,10 +109,17 @@
 						<h4 class="modal-title">Share with your friends!</h4>
 					</div>
 					<div class="modal-body">
-						<p>FACEBOOK!</p>
-						<!--<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button"></div>-->
-						<input name="search" placeholder="Enter an e-mail address..." />
-						<button><a href="mailto:?Subject=Your friend sent you a playlist"></a>Send</button>
+						<p>This site is under construction so you cannot currently send playlists yet. But you can share this
+						site to your friends!</p>
+						<!-- Facebook share -->
+						<div class="fb-share-button" data-href="http://students.washington.edu/kailock/info343/spotify-template/" data-layout="button"></div>
+						<!-- Twitter share-->
+						<br>
+						<a href="https://twitter.com/share" class="twitter-share-button" data-text="Spotify Sharing Swag-Site">Tweet</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+							if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}
+						(document, 'script', 'twitter-wjs');</script>
+						<br>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

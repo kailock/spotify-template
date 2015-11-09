@@ -38,6 +38,11 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
     $scope.playlist.push({title: song.name, artist: song.artists[0].name});
 
   }
+
+  $scope.remove = function(song) {
+    var index = $scope.playlist.indexOf(song);
+    $scope.playlist.splice(index, 1);
+  }
 });
 
 // Add tool tips to anything with a title property
