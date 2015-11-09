@@ -1,4 +1,7 @@
+/* Kaitlin Lockhart
+   Styling for Spotify page*/
 
+/* Bootstrap and font imports */
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,300);
 
@@ -6,21 +9,8 @@ body {
   background-color: black;
 }
 
-#songList, #playlistDiv {
-
-  /*height:325px;*/
-  /*max-height:325px;*/
-  /*padding-right: 0;*/
-  /*padding-left: 5%;*/
-}
-
-#songList:hover, #playlistDiv:hover {
-  /*overflow:scroll;*/
-  /*overflow-x:hidden;*/
-}
-
-.modal-body img {
-  height: 350px;
+.fb-share-button {
+  padding-bottom: 2%;
 }
 
 #header {
@@ -40,10 +30,8 @@ h1 {
   font-size: 30px;
 }
 
-#playlistDiv {
-  /*padding: 10px;*/
-  /*background-color: white;*/
-  /*opacity: 0.5;*/
+.modal-body img {
+  height: 350px;
 }
 
 #share p {
@@ -60,7 +48,6 @@ h1 {
 }
 
 @media screen and (min-width: 768px) {
-
   #header {
     background-image: url("spotify.jpg");
   }

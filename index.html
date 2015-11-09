@@ -1,5 +1,5 @@
 <!-- Kaitlin Lockhart
-     Spotify API project. Show's basic song info for each song searched, can add to playlist, and share -->
+     Spotify API project. Shows basic song info for each song searched, add to playlist, and share site -->
 
 <!DOCTYPE html>
 <html>
@@ -19,12 +19,14 @@
 	<script src="app.js"></script>
 	<link href="app.css" type="text/css" rel="stylesheet"/>
 
+	<!-- FB open graph tags to customize link previews -->
 	<meta property="og:url"           content="http://students.washington.edu/kailock/info343/spotify-template/" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="Spotify Sharing Swag Site" />
 	<meta property="og:description"   content="The simplest website to share music you love <3" />
 	<meta property="og:image"         content="spotify_heart.jpg" />
 </head>
+
 <body>
 	<!-- Load Facebook SDK for JavaScript -->
 	<div id="fb-root"></div>
@@ -51,15 +53,12 @@
 			</div>
 		</form>
 		</div>
+
 		<!-- Results -->
-
-
 		<div id="songList" class="container-fixed col-md-6">
-			<!--<p ng-show="tracks.length>0" class="help-block">Click to sample</p>-->
-			<p ng-show="tracks.length>0">Click the button for more information and to play a sample.</p>
+			<p ng-show="tracks.length>0">Click the button for more information and play a sample.</p>
 			<ul class="list-group">
 				<li ng-repeat="track in tracks" class="list-group-item" title="{{track.name}}">
-					<!--<button ng-model="add" ng-click="addSong(track)" class="btn btn-xs">Add</button>-->
 					<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal{{track.id}}" ng-click="play(track.preview_url)">Info</button>
 					{{'   ' + track.name + ', by ' + track.artists[0].name}}
 
@@ -84,12 +83,11 @@
 						</div>
 					</div>
 				</li>
-
 			</ul>
 		</div>
 
 		<!-- Playlist -->
-		<div id="playlistDiv" class="container-fixed col-md-6" ng-show="playlist.length>0"> <!-- ng-show="playlist.length>0"-->
+		<div id="playlistDiv" class="container-fixed col-md-6" ng-show="playlist.length>0">
 			<p>This is your super duper playlist. Click share to send to friends.</p>
 			<ul class="list-group">
 				<li ng-repeat="song in playlist" class="list-group-item" title="{{song.name}}">
@@ -97,7 +95,6 @@
 					{{'   ' + song.title + ', by ' + song.artist}}</li>
 				<button id="shareButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#share">Share</button>
 			</ul>
-
 		</div>
 
 		<!-- Sharing modal -->
@@ -110,16 +107,15 @@
 					</div>
 					<div class="modal-body">
 						<p>This site is under construction so you cannot currently send playlists yet. But you can share this
-						site to your friends!</p>
+						site to your friends! Even though they probably won't care LOL</p>
 						<!-- Facebook share -->
 						<div class="fb-share-button" data-href="http://students.washington.edu/kailock/info343/spotify-template/" data-layout="button"></div>
-						<!-- Twitter share-->
 						<br>
+						<!-- Twitter share-->
 						<a href="https://twitter.com/share" class="twitter-share-button" data-text="Spotify Sharing Swag-Site">Tweet</a>
 						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
 							if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}
 						(document, 'script', 'twitter-wjs');</script>
-						<br>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -127,7 +123,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 </body>
