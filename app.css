@@ -1,3 +1,67 @@
+
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300);
+
 body {
-  padding:10px;
+  background-color: black;
+}
+
+#songList, #playlistDiv {
+
+  /*height:325px;*/
+  /*max-height:325px;*/
+  /*padding-right: 0;*/
+  /*padding-left: 5%;*/
+}
+
+#songList:hover, #playlistDiv:hover {
+  /*overflow:scroll;*/
+  /*overflow-x:hidden;*/
+}
+
+.modal-body img {
+  height: 350px;
+}
+
+#header {
+  background-image: url("spotify-small.jpg");
+  color: white;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-bottom: 2%;
+}
+
+h1, p {
+  color: white;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+#playlistDiv {
+  /*padding: 10px;*/
+  /*background-color: white;*/
+  /*opacity: 0.5;*/
+}
+
+#playlistDiv button {
+  margin-top: 2%;
+  float: right;
+}
+
+#songInfo {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+@media screen and (min-width: 768px) {
+
+  #header {
+    background-image: url("spotify.jpg");
+  }
+
+  h1 {
+    font-size: 75px;
+  }
 }
